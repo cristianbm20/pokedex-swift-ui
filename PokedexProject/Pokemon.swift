@@ -8,22 +8,27 @@
 import Foundation
 
 struct PokemonDetailsDataModel: Decodable {
-  //  let sprite: String
+  let name: String
   let height: Int
   let weight: Int
   let types: [TypeElement]
+  let sprites: Sprites
   
   enum CodingKeys: CodingKey {
+    case name
     case height
     case weight
     case types
+    case sprites
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.name = try container.decode(String.self, forKey: .name)
     self.height = try container.decode(Int.self, forKey: .height)
     self.weight = try container.decode(Int.self, forKey: .weight)
     self.types = try container.decode([TypeElement].self, forKey: .types)
+    self.sprites = try container.decode(Sprites.self, forKey: .sprites)
   }
 }
 
@@ -39,6 +44,26 @@ struct TypeDetail: Codable {
 struct TypeElement: Codable {
   let slot: Int
   let type: TypeDetail
+}
+
+struct Sprites: Codable {
+  let other: Other
+}
+
+struct Other: Codable {
+  let officialArtwork: OfficialArtwork
+  
+  enum CodingKeys: String, CodingKey {
+    case officialArtwork = "official-artwork"
+  }
+}
+
+struct OfficialArtwork: Codable {
+  let frontDefault: String?
+  
+  enum CodingKeys: String, CodingKey {
+    case frontDefault = "front_default"
+  }
 }
 
 final class Pokemon: ObservableObject {
