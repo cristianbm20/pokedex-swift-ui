@@ -9,10 +9,10 @@ A SwiftUI application that showcases a Pokedex, utilizing data fetching from Pok
 
 ## Screenshots
 
-![Main Screen](listview.png)
+<img src="listview.png" width="300" alt="Main Screen">
 *Main app screen showing a list of Pokémon.*
 
-![Pokémon Detail](detailsview.png)
+<img src="detailsview.png" width="300" alt="Pokémon Detail">
 *Detail view showing specific information about the selected Pokémon.*
 
 ## How to Use
